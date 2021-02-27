@@ -1,0 +1,72 @@
+from abc import ABC, abstractmethod
+from math import trunc
+
+
+"""
+data de criação: 26/02/2021
+
+IDEIA PRINCIPAL
+
+  Criar uma classe base que esponha os métodos
+e atributos comuns a todas as raças criadas por
+herança.
+
+        'Lembre-se da Substituição de Liskov'
+
+  Caso faça alguma alteração lembre-se de manter
+o código bem legível.
+"""
+
+
+class Entidade(ABC):
+    def __init__(self,
+        nome,
+        hp_total, st_total, mp_total, 
+        força, destreza, inteligencia, constituicao,):
+
+        #CARACTERISTICAS
+        self.nome = nome
+        self.hp_total = hp_total
+        self.st_total = st_total
+        self.mp_total = mp_total
+        
+        self.hp_atual = self.hp_total
+        self.st_total = self.st_total
+        self.mp_total = self.mp_total
+        
+        #ATRIBUTOS
+        self.força = força
+        self.destreza = destreza
+        self.inteligencia = inteligencia
+        self.constituicao = constituicao
+
+        #OFENSIVOS
+        self.arma_equipada = None
+        self.chance_de_acerto_fisico = trunc((self.força + self.destreza)/10)
+        self.chance_acerto_magico = trunc((self.inteligencia/50))
+        self.chance_de_critico = 5+trunc(self.destreza/100)
+        
+        #DEFENSIVO
+        self.chance_de_esquiva = self.destreza*0.6
+        self.armadura = 10
+        self.resistencia_magica = 0
+        
+        #GERAL
+        self.inventario = []
+        
+    #METODOS INVENTARIO
+    def add_ao_inventario(self, item):
+        if len(self.inventario) < 31:
+            self.inventario.append(item)
+            print(f'\033[32m{item.nome} adicionado ao inventário\033[m')
+        else:
+            print(f'INVENTARIO CHEIO')
+            return
+
+    #EQUIPANDO
+    def equipar_arma(self, arma):
+        if arma not in self.inventario:
+            self.add_ao_inventario(arma)
+        print(f'{arma.nome} equipada')
+        self.arma_equipada = arma
+ 
