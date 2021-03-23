@@ -1,5 +1,7 @@
 from time import sleep
 
+#Criei uma classe pra fazer testes unitários naquelas épocas de estudo de POO
+
 """
 NOTA! Em todos os métodos que pedem um argumento 'func',
 ele se refere somente a uma função sem chamá-la, sendo que
