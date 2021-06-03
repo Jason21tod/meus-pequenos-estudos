@@ -3,6 +3,9 @@ from abc import ABC, abstractmethod
 from time import sleep
 
 
+"""https://refactoring.guru/pt-br/design-patterns/observer"""
+
+
 class Observer(ABC):
     def __init__(self):
         self.subscribers = []
