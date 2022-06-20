@@ -1,0 +1,154 @@
+#banner_mercado {
+    width: 20%;
+    height: 20%;
+}
+
+.caixa {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+
+
+header {
+    background-color: #121212;
+    display: block;
+}
+
+
+nav {
+    top: 50%;
+    right: 27%;
+    position: absolute;
+}
+
+nav li {
+    display: inline;
+    margin: 0 0 0 15px;
+}
+
+nav a {
+    text-transform: uppercase;
+    color:  rgb(180, 150, 10);
+    font-weight: bold;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.produtos li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    vertical-align: top;
+    margin: 0, 1.5%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    border:3px solid rgb(180, 150, 10);
+    border-radius: 10px;
+}
+
+nav a:hover {
+    color: #991111;
+    text-decoration: underline;
+}
+
+.produtos li:hover {
+    border-color: #991111;
+}
+
+.produtos li:active {
+    border-color: #121212;
+}
+
+.produtos {
+    padding: 7%;
+    width: 940px;
+    display: block;
+    margin: 0 auto;
+}
+
+.produtos li:hover h2 {
+    font-size: 40px;
+}
+
+.produtos h2 {
+    font-size: 32px;    
+    font-weight: bold;
+}
+
+.preco {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    background: url("https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/1531250/7d659b83c03da3ce99da997c23513494c06037b6.jpg");
+    padding: 0 0 100px;
+}
+
+footer p {
+    font-size: 12px;
+    margin-right: 18%;
+    color: #991111;
+}
+
+main {
+    width: 940px;
+    margin: 0 auto;
+}
+
+form {
+    margin: 40px 0;
+}
+
+form label, form fieldset legend {
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+    font-weight: bold;
+}
+
+.input-padrao {
+    display: block;
+    margin: 0 0 20px;
+    padding: 10px 25px;
+    width: 50%;
+}
+
+.check-email {
+    margin: 20px;
+}
+
+.enviar {
+    width: 40%;
+    padding: 15px 0;
+    background:rgb(180, 150, 10);
+    color: #121212;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px 10px 15px;
+    transition: 1s all;
+}
+
+.enviar:hover {
+    background-color: #991111;
+    transform: scale(1.2);
+}
+
+table {
+    margin: 20px  40px;
+}
+
+thead {
+    background:#121212;
+    color:rgb(180, 150, 10);
+    font-weight: bold;
+}
+
+td{
+    border: 1px solid #121212;
+    padding: 8px 15px;
+}

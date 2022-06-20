@@ -1,0 +1,61 @@
+.cabecalho {
+    text-align: center;
+    background-color: #121212;
+    display: block;
+}
+
+.inicio {
+    background-color: #222222;
+    display: inline-block;
+    margin-top: auto;
+}
+
+.titulos {
+    color: rgb(180, 150, 10);
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: #dddddd;
+}
+
+#banner {
+    height: 40%;
+    width: 40%;
+    border:10px solid;
+    padding-top: 20px;
+    margin-left: 25%;
+}
+
+#resumo {
+    font-size: 20px;
+;
+}
+
+.localizacoes {
+    display: inline-block;
+    margin-top: auto;
+    color: #dddddd;
+    background-color: #131313;
+}
+
+
+
+ul {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20%;
+}
+
+.locais {
+    font-style: italic;
+}
+
+#praca {
+    height: 50%;
+    width: 50%;
+    border: 10px ;
+    margin-left: 25%;
+
+}

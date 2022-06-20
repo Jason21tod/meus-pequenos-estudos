@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_reset.css">
+    <link rel="stylesheet" href="mercadorias.css">
+    <title>Competicao Glória</title>
+</head>
+<body>
+    <header>
+        <div class="caixa">
+            <h1><img id="banner_mercado" src="https://i.pinimg.com/564x/d1/61/9a/d1619a0d2c47f7a3b3db71fa231dff0c.jpg" alt="mercado baner"></h1>
+            <nav>
+                <ul class ="links">
+                    <li><a href="index.html">home</a></li>
+                    <li><a href="">festivais</a></li>
+                    <li><a href="">noticias</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main> 
+
+        <form>
+            <fieldset>
+                <legend>Inscreva-se já</legend>
+                <label for="nomesobrenome">nome e sobrenome</label>
+                <input type="text" name="Nome e sobremone" id="nomesobrenome" class="input-padrao" required placeholder="Nome Sobrenome">
+                
+                <label for="email">Email</label>
+                <input type="email" name="Email" id="email" class="input-padrao" required placeholder="seuemail@dominio.com">
+                <label for="telefone">Telefone</label>
+                <input type="tel", name="Telefone" id="telefone" class="input-padrao" required placeholder="(xx)xxxx-xxxx">
+                <label for="mensagem">Mensagem</label>
+                <textarea name="mensagems" id="mensagem" cols="70" rows="10" required></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Como deseja ser avisado ?</legend>
+                <label for="radio-email"><input type="radio" name="contato" id="radio-email" value="email">email</label>
+                <label for="radio-telefone"><input type="radio" name="contato" id="radio-telefone" value="telefone">telefone</label>
+                <label for="radio-whatsapp"><input type="radio" name="contato" id="radio-whatsapp" value="whatsapp" checked>WhatsApp</label>
+            </fieldset>
+            
+            <label class="check-email" for="emailcheckbox"> <input type="checkbox" name="check email" id="emailcheckbox" checked> Gostaria de receber nossas novidades por email ?</label>
+
+            <fieldset>
+                <legend>Qual horário prefere ser atendido ?</legend>
+                <select name="selcione o periodo" id="period-selection">
+                    <option>Manhã</option>
+                    <option>Tarde</option>
+                    <option>Noite</option>
+                </select>
+            </fieldset>
+
+            <input class="enviar" type="submit" value="enviar formulário">
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Horario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Segunda</td>
+                    <td>8h - 14h</td>
+                </tr>
+                <tr>
+                    <td>Quarta</td>
+                    <td>14h - 20h</td>
+                </tr>
+                <tr>
+                    <td>Setxta</td>
+                    <td>20h - 00h</td>
+                </tr>
+                <tr>
+                    <td colspan="5">Rio de Janeiro</td> 
+                </tr>
+
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer>
+        <img src="" alt="">
+        <p>Copyright Gloria city - 2022 &copy;</p>
+    </footer>
+</body>
