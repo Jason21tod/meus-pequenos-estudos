@@ -1,0 +1,63 @@
+
+h1 {
+    display: block;
+    color: #FFFFFF;
+    font: bold;
+    font-size: 48px;
+    font-weight: bold;
+    position: relative;
+    margin: -100px 60px 10px;
+}
+
+header, header img {
+    position: relative;
+    background-color: #475F57;
+}
+
+header img {
+    margin-left: 40%;
+}
+
+h2 {
+    margin: 15px 0 5px;
+    font-size: 30px;
+}
+
+table {
+    border: #272F27 1px solid;
+    border-radius: 5px, 10px, 15px;
+}
+
+form {
+    background: #477F57;
+    color: #272F27;
+    display: inline-block;
+    margin: 10% 40% 15px;
+    padding: 20px;
+    position: relative;
+    transition: 1s;
+    border: #272F27 3px solid;
+}
+
+form:hover {
+    transform: scale(1.2);
+}
+
+.enviar-roll{
+    width: 30%;
+    background: #477F57;
+    border: none;
+
+}
+
+.enviar-roll {
+    background: #FFFFFF;
+}
+
+thead tr, thead td input{
+    text-align: center;
+    display: flexbox;
+    color: #474F57;
+    width: auto;
+    border: #474F57 1px solid
+}
