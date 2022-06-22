@@ -5,6 +5,14 @@ img {
     height: 20%;
 }
 
+h1 {
+    display: block;
+    margin: 2% 10% 0%;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 300%;
+}
+
 header{
     position: absolute;
     width: 100%;
