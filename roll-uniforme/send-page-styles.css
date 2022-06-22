@@ -1,21 +1,16 @@
 
-h1 {
-    display: block;
-    color: #FFFFFF;
-    font: bold;
-    font-size: 48px;
-    font-weight: bold;
-    position: relative;
-    margin: -100px 60px 10px;
+
+img {
+    width: 20%;
+    height: 20%;
 }
 
-header, header img {
-    position: relative;
+header{
+    position: absolute;
+    width: 100%;
+    height: auto;
     background-color: #475F57;
-}
-
-header img {
-    margin-left: 40%;
+    align-content: center;
 }
 
 h2 {
@@ -25,6 +20,7 @@ h2 {
 
 table {
     border: #272F27 1px solid;
+    position: relative;
     border-radius: 5px, 10px, 15px;
 }
 
@@ -32,9 +28,9 @@ form {
     background: #477F57;
     color: #272F27;
     display: inline-block;
-    margin: 10% 40% 15px;
+    margin: 20% 10% 20%;
     padding: 20px;
-    position: relative;
+    position: absolute;
     transition: 1s;
     border: #272F27 3px solid;
 }
