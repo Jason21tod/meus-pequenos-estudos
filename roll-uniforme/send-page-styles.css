@@ -10,11 +10,12 @@ h1 {
     margin: 2% 10% 0%;
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 300%;
+    font-size: 250%;
 }
 
 header{
-    position: absolute;
+    display: block;
+    position: relative;
     width: 100%;
     height: auto;
     background-color: #475F57;
@@ -26,11 +27,6 @@ h2 {
     font-size: 30px;
 }
 
-table {
-    border: #272F27 1px solid;
-    position: relative;
-    border-radius: 5px, 10px, 15px;
-}
 
 form {
     background: #477F57;
@@ -42,6 +38,13 @@ form {
     transition: 1s;
     border: #272F27 3px solid;
 }
+
+table {
+    border: #272F27 1px solid;
+    position: relative;
+    border-radius: 5px, 10px, 15px;
+}
+
 
 form:hover {
     transform: scale(1.2);
