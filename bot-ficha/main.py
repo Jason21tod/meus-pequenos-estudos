@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from datetime import date
 from logging import exception
+import pyautogui
+from time import sleep
 from base_handlers import data_sanatizer as data_san
 from base_handlers import terminal_logger as term_log
 
@@ -62,6 +64,16 @@ class Writer:
     def __init__(self, name= 'Writer mock') -> None:
         self.name = name
 
+    def make_kid_description(self, kid: Kid):
+        sleep(5)
+        kid_msg = (str(kid.name), str(kid.apt), str(kid.parents))
+        pyautogui.click()
+        for item in kid_msg:
+            pyautogui.typewrite(item, 0.3)
+            pyautogui.typewrite(' ', 0.3)
+        pyautogui.hotkey('ctrl', 'enter')
+
+        
 
 class Jason:
     """Classe que une input, processamento, análise e output, de tudo. Ela funciona com base em composição. As duas classes que compoem essa
@@ -85,7 +97,14 @@ if __name__ == '__main__':
             print(self.receiver.kids_sector_list)
         
     class TestWriter(unittest.TestCase):
-        pass
+        my_writer = Writer()
+
+        def test_make_kid_description(self):
+            kid = Kid()
+            sleep(2)
+            pyautogui.hotkey('ctrl', 'n')
+            sleep(2)
+            self.my_writer.make_kid_description(kid)
 
     class TestJason(unittest.TestCase):
         pass
