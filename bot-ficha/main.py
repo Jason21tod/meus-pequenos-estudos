@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 from datetime import date
 from logging import exception
+from random import randint
 import pyautogui
 from time import sleep
 from base_handlers import data_sanatizer as data_san
 from base_handlers import terminal_logger as term_log
+import json as jsn
 
 
 @dataclass
@@ -66,11 +68,10 @@ class Writer:
 
     def make_kid_description(self, kid: Kid):
         sleep(5)
-        kid_msg = (str(kid.name), str(kid.apt), str(kid.parents))
-        pyautogui.click()
+        kid_msg = ((f'{kid.name}'), str(kid.apt), (f'{kid.parents}'))
         for item in kid_msg:
-            pyautogui.typewrite(item, 0.3)
-            pyautogui.typewrite(' ', 0.3)
+            pyautogui.write(item, 0.1)
+            pyautogui.write(' ', 0.1)
         pyautogui.hotkey('ctrl', 'enter')
 
         
@@ -79,16 +80,33 @@ class Jason:
     """Classe que une input, processamento, análise e output, de tudo. Ela funciona com base em composição. As duas classes que compoem essa
     são receiver e writer"""
     def __init__(self, name: str = 'Jason Mock'):
-        self.name = name 
+        self.name = name
+        self.my_receiver: Receiver = Receiver()
+        self.my_writer: Writer = Writer()
 
+    def store_in_data(self):
+        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=1)
+        with open('kids_data.json', 'w') as kids_db:
+            kids_db.write((f'{jason_objt}'))
 
 if __name__ == '__main__':
-    import unittest 
+    import unittest
+
+
+    def do_kids_by_range(kids_number):
+        kids = list()
+        for kid in range(0, kids_number):
+            kids.append(Kid((f'Crianca {kid}'), randint(3, 13), date(year=2022, month=randint(1, 12), day=randint(1, 28)), date(year=2022, month=randint(1, 12), day=randint(1, 28)), randint(100, 400), (f'Responsavel{kid}')))
+        return kids
+
 
     class TestReceiver(unittest.TestCase):
         receiver = Receiver()
-        # def test_receive_a_kid(self):
-        #     print(self.receiver.receive_a_kid())
+        def test_add_kid_in_range(self):
+            kids_list = do_kids_by_range(10)
+            for kid in kids_list:
+                self.receiver.add_kid_to_sector(kid)
+            print(self.receiver.kids_sector_list)
         
         def test_add_kid_to_sector(self):
             kid = Kid()
@@ -98,6 +116,20 @@ if __name__ == '__main__':
         
     class TestWriter(unittest.TestCase):
         my_writer = Writer()
+        my_receiver = Receiver()
+
+        def test_make_description_in_range(self):
+            kid = Kid()
+            sleep(2)
+            pyautogui.hotkey('ctrl', 'n')
+            sleep(2)
+            kids = do_kids_by_range(8)
+            pyautogui.write('pastinha teste do clubinho', interval=0.1)
+            pyautogui.hotkey('ctrl', 'enter')
+            for kid in kids:
+                self.my_receiver.add_kid_to_sector(kid)
+            for kid in self.my_receiver.kids_sector_list['clubinho']:
+                self.my_writer.make_kid_description(kid)
 
         def test_make_kid_description(self):
             kid = Kid()
@@ -107,6 +139,11 @@ if __name__ == '__main__':
             self.my_writer.make_kid_description(kid)
 
     class TestJason(unittest.TestCase):
-        pass
+        jason = Jason()
+        def test_store_in_data(self):
+            kids = do_kids_by_range(8)
+            for kid in kids:
+                self.jason.my_receiver.add_kid_to_sector(kid)
+            self.jason.store_in_data()
 
     unittest.main()
