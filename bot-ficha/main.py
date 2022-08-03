@@ -31,27 +31,25 @@ class Receiver:
             'clube':[]
         }
 
-    def receive_a_kid(self) -> Kid:
-        kid = Kid(
-            input('<<< Insira o nome: '),
-            input('<<< Insira a idade: '),
-            date(date.year, int(input('mês: ')), int(input('dia: '))
-            ),
-            date(date.year, int(input('mês: ')), int(input('dia: '))
-            ),
-            int(input('Insira o apartamento: ')),
-            input('Insira o responsável: '))
+    def receive_a_kid(self) -> dict:
+        kid = {
+            'nome': input('<<< Insira o nome: '),
+            'idade': input('<<< Insira a idade: '),
+            'check-in':[int(input('mês: ')), int(input('dia: '))],
+            'check-out':[int(input('mês: ')), int(input('dia: '))],
+            'apt':int(input('Insira o apartamento: ')),
+            'responsavel': input('Insira o responsável: ')}
         return kid
 
-    def add_kid_to_sector(self, kid: Kid):
+    def add_kid_to_sector(self, kid:dict):
         try:
-            if kid.years_old <= 5 and kid.years_old > 2:
+            if kid['idade'] <= 5 and kid['idade'] > 2:
                 self.kids_sector_list['clubinho'].append(kid)
                 return
-            if kid.years_old <= 8 and kid.years_old > 6:
+            if kid['idade'] <= 8 and kid['idade'] > 6:
                 self.kids_sector_list['kids club'].append(kid)
                 return
-            if kid.years_old <= 13 and kid.years_old > 9:
+            if kid['idade'] <= 13 and kid['idade'] > 9:
                 self.kids_sector_list['clube'].append(kid)
                 return
         except:
@@ -66,14 +64,13 @@ class Writer:
     def __init__(self, name= 'Writer mock') -> None:
         self.name = name
 
-    def make_kid_description(self, kid: Kid):
+    def make_kid_description(self, kid: dict):
         sleep(5)
-        kid_msg = ((f'{kid.name}'), str(kid.apt), (f'{kid.parents}'))
+        kid_msg = ((kid['nome']), str(kid['apt']), kid['responsavel'])
         for item in kid_msg:
             pyautogui.write(item, 0.1)
             pyautogui.write(' ', 0.1)
         pyautogui.hotkey('ctrl', 'enter')
-
         
 
 class Jason:
@@ -85,7 +82,7 @@ class Jason:
         self.my_writer: Writer = Writer()
 
     def store_in_data(self):
-        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=1)
+        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=4)
         with open('kids_data.json', 'w') as kids_db:
             kids_db.write((f'{jason_objt}'))
 
@@ -96,7 +93,15 @@ if __name__ == '__main__':
     def do_kids_by_range(kids_number):
         kids = list()
         for kid in range(0, kids_number):
-            kids.append(Kid((f'Crianca {kid}'), randint(3, 13), date(year=2022, month=randint(1, 12), day=randint(1, 28)), date(year=2022, month=randint(1, 12), day=randint(1, 28)), randint(100, 400), (f'Responsavel{kid}')))
+            kids.append(
+                {'nome':(f'Crianca {kid}'),
+                 'idade':randint(3, 13),
+                'check-in':[randint(1, 12),
+                randint(1, 28)], 
+                'check-out':[randint(1, 12),
+                randint(1, 28)],
+                'apt':randint(100, 400),
+                'responsavel':(f'responsavel{kid}')})
         return kids
 
 
@@ -109,9 +114,16 @@ if __name__ == '__main__':
             print(self.receiver.kids_sector_list)
         
         def test_add_kid_to_sector(self):
-            kid = Kid()
+            kid = {
+                'nome':(f'Crianca mock'),
+                 'idade':randint(3, 13),
+                'check-in':[randint(1, 12),
+                randint(1, 28)], 
+                'check-out':[randint(1, 12),
+                randint(1, 28)],
+                'apt':randint(100, 400),
+                'responsavel':(f'responsavel mock')}
             self.receiver.add_kid_to_sector(kid)
-            self.assertIn(kid, self.receiver.kids_sector_list['clube'])
             print(self.receiver.kids_sector_list)
         
     class TestWriter(unittest.TestCase):
@@ -119,11 +131,10 @@ if __name__ == '__main__':
         my_receiver = Receiver()
 
         def test_make_description_in_range(self):
-            kid = Kid()
             sleep(2)
             pyautogui.hotkey('ctrl', 'n')
             sleep(2)
-            kids = do_kids_by_range(8)
+            kids = do_kids_by_range(18)
             pyautogui.write('pastinha teste do clubinho', interval=0.1)
             pyautogui.hotkey('ctrl', 'enter')
             for kid in kids:
@@ -132,7 +143,15 @@ if __name__ == '__main__':
                 self.my_writer.make_kid_description(kid)
 
         def test_make_kid_description(self):
-            kid = Kid()
+            kid = {
+                'nome':(f'Crianca mock'),
+                 'idade':randint(3, 13),
+                'check-in':[randint(1, 12),
+                randint(1, 28)], 
+                'check-out':[randint(1, 12),
+                randint(1, 28)],
+                'apt':randint(100, 400),
+                'responsavel':(f'responsavel mock')}
             sleep(2)
             pyautogui.hotkey('ctrl', 'n')
             sleep(2)
@@ -141,7 +160,7 @@ if __name__ == '__main__':
     class TestJason(unittest.TestCase):
         jason = Jason()
         def test_store_in_data(self):
-            kids = do_kids_by_range(8)
+            kids = do_kids_by_range(20)
             for kid in kids:
                 self.jason.my_receiver.add_kid_to_sector(kid)
             self.jason.store_in_data()
