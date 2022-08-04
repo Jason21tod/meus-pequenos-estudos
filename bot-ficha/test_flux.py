@@ -1,5 +1,5 @@
 #pasta de teste de integração, testes manuais serão feitos aqui
-from main import *
+from main_tests import *
 from unittest import TestCase, main
 from text_cumpriments import *
 
@@ -42,6 +42,12 @@ class TestSuite(TestCase):
         pyautogui.write(f'Hoje eu vou estar fazendo um teste de mensagens com um total de {kids_quant} criancas :animado')
         pyautogui.press('enter', 2, interval=1)
 
+    def test_add_kid_in_range(self):
+        kids_list = do_kids_by_range(10)
+        for kid in kids_list:
+            self.receiver.add_kid_to_sector(kid)
+        print(self.receiver.kids_sector_list)
+
     def test_kids_add(self):
         kids_list = do_kids_by_range(50)
         pyautogui.hotkey('alt', 'tab')
@@ -50,12 +56,10 @@ class TestSuite(TestCase):
         pyautogui.click(duration=0.7, x=786, y=695)
         sleep(2)
         for kid in kids_list:
-            term_log.TerminalLogger.write((f'Recebendo > {kid})'))
             self.jason_mock.my_receiver.add_kid_to_sector(kid)
     
     def test_save_at_data_base(self):
         self.jason_mock.store_in_data()
-        term_log.TerminalLogger.write('Guardando nos dados')
     
     def test_write_msg(self):
         sleep(3)
