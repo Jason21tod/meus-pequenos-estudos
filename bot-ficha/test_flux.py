@@ -1,6 +1,7 @@
 #pasta de teste de integração, testes manuais serão feitos aqui
 from main import *
 from unittest import TestCase, main
+from text_cumpriments import *
 
 pyautogui.FAILSAFE = 1.5
 
@@ -34,10 +35,9 @@ def do_kids_by_range(kids_number):
 class TestSuite(TestCase):
     jason_mock = Jason()
     def do_pre_description(self, kids_quant):
-        pyautogui.write('Oi :sorriso')
-        pyautogui.press('enter')
-        pyautogui.write("""eu sou Jason, o pastoleiro,
-        estou fazendo uns testes com mensagens, espero que n se importem.""")
+        do_cumpriment_showing_time()
+        do_cumpriment_by_time()
+        do_cumpriment_in_test()
         pyautogui.press('enter')
         pyautogui.write(f'Hoje eu vou estar fazendo um teste de mensagens com um total de {kids_quant} criancas :animado')
         pyautogui.press('enter', 2, interval=1)
