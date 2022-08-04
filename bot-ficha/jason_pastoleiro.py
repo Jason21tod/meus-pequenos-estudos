@@ -70,5 +70,5 @@ class Jason:
 
     def store_in_data(self):
         jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=2)
-        with open('kids_data.json', 'w') as kids_db:
+        with open('data/kids_data.json', 'w') as kids_db:
             kids_db.write((f'{jason_objt}'))
