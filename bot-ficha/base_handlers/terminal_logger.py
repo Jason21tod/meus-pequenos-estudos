@@ -1,6 +1,6 @@
 from typing import Any
 
-_NAME = 'Jason Pastoleiro Analista'
+_NAME = 'Jason Pastoleiro'
 
 
 class TerminalLogger:

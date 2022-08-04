@@ -25,6 +25,7 @@ class DataInputSanatizer:
     def filter_date_numbers(self, date: date):
         return [date.year,date.month,date.day]
 
+
 if __name__ == '__main__':
     import unittest
 
