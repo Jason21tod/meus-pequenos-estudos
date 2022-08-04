@@ -65,8 +65,9 @@ class Writer:
         self.name = name
 
     def make_kid_description(self, kid: dict):
-        sleep(5)
+        sleep(1)
         kid_msg = ((kid['nome']), str(kid['apt']), kid['responsavel'])
+        sleep(1)
         for item in kid_msg:
             pyautogui.write(item, 0.1)
             pyautogui.write(' ', 0.1)
@@ -82,7 +83,7 @@ class Jason:
         self.my_writer: Writer = Writer()
 
     def store_in_data(self):
-        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=4)
+        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=2)
         with open('kids_data.json', 'w') as kids_db:
             kids_db.write((f'{jason_objt}'))
 
@@ -101,7 +102,7 @@ if __name__ == '__main__':
                 'check-out':[randint(1, 12),
                 randint(1, 28)],
                 'apt':randint(100, 400),
-                'responsavel':(f'responsavel{kid}')})
+                'responsavel':(f'responsavel {kid}')})
         return kids
 
 
@@ -135,7 +136,7 @@ if __name__ == '__main__':
             pyautogui.hotkey('ctrl', 'n')
             sleep(2)
             kids = do_kids_by_range(18)
-            pyautogui.write('pastinha teste do clubinho', interval=0.1)
+            pyautogui.write('pastinha teste do clubinho', interval=0.05)
             pyautogui.hotkey('ctrl', 'enter')
             for kid in kids:
                 self.my_receiver.add_kid_to_sector(kid)
@@ -152,9 +153,7 @@ if __name__ == '__main__':
                 randint(1, 28)],
                 'apt':randint(100, 400),
                 'responsavel':(f'responsavel mock')}
-            sleep(2)
             pyautogui.hotkey('ctrl', 'n')
-            sleep(2)
             self.my_writer.make_kid_description(kid)
 
     class TestJason(unittest.TestCase):

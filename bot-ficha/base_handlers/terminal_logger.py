@@ -1,6 +1,6 @@
 from typing import Any
 
-__NAME = 'Jason Pastoleiro Analista'
+_NAME = 'Jason Pastoleiro Analista'
 
 
 class TerminalLogger:
@@ -8,7 +8,7 @@ class TerminalLogger:
     é uma forma de dizer como jason está lidando com tudo."""
     @classmethod
     def write(cls, something: Any):
-        print(__NAME, ' -  Avisa >>> ', something)
+        print(_NAME, ' -  Avisa >>> ', something)
 
 
 if __name__ == '__main__':
