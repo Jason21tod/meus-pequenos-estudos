@@ -2,7 +2,7 @@ import pyautogui
 
 from time import sleep
 
-def do_pattern_msg():
+def write_end_test_msg():
     pyautogui.hotkey('ctrl', 'enter')
     pyautogui.write('______________________________')
     pyautogui.hotkey('ctrl', 'enter')
@@ -17,4 +17,4 @@ def do_pattern_msg():
 def inform_kids_quant(kids_quant: int):
     pyautogui.press('enter')
     pyautogui.write(f'Hoje eu vou estar fazendo um teste de mensagens com um total de {kids_quant} criancas :animado')
-    pyautogui.press('enter', 2, interval=1)
+    pyautogui.press('enter', 2, interval=1) 
