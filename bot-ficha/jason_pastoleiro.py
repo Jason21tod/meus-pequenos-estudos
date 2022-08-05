@@ -1,9 +1,42 @@
+from dataclasses import dataclass
+from datetime import date
 import pyautogui
 import json as jsn
 
 from logging import exception
 from time import sleep
 from base_handlers import data_sanatizer as ds
+
+
+@dataclass
+class Sector:
+    name: str
+    kids: list
+    year_limit: list[int, int]
+
+    def make_dict(self):
+        return {self.name: self.kids}
+
+
+@dataclass
+class Kid:
+    name: str
+    years_old: int
+    check_in: date
+    checkout: date
+    apt: int
+    parent: str
+    anot: str
+
+    def make_dict(self):
+        return {
+        'nome': self.name,
+        'idade': self.years_old,
+        'check-in':[self.check_in.day, self.check_in.month],
+        'check-out':[self.checkout.day, self.checkout.month],
+        'apt': self.apt,
+        'responsavel': self.parent,
+        'anot': self.anot}
 
 
 class Receiver:
@@ -73,9 +106,9 @@ class Jason:
         self.my_receiver: Receiver = Receiver()
         self.my_writer: Writer = Writer()
 
-    def store_in_data(self):
-        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=2)
-        with open('data/kids_data.json', 'w') as kids_db:
+    def store_in_data(self, open_form: str = '+w'):
+        jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=3)
+        with open('data/kids_data.json', open_form) as kids_db:
             kids_db.write((f'{jason_objt}'))
 
 
@@ -91,6 +124,19 @@ if __name__ == '__main__':
     'check-out':[18, 2],
     'apt': 100,
     'responsavel': 'Alexandre (Mock)'}
+
+
+    class TestSector(TestCase):
+        sector = Sector('mock sector', [kid_mock], [9, 13])
+        def test_make_dict(self):
+            t_l.TerminalLogger.write('testando make_dict in test sector')
+            print(self.sector.make_dict())
+
+    class TestKid(TestCase):
+        kid = Kid('Alexandre', 10, date(2022, 2, 12), date(2022, 2, 18), 100, 'Rodrigo', 'Nenhuma')
+        def test_make_dict(self):
+            t_l.TerminalLogger.write('testando make dict in test kid')
+            print(self.kid.make_dict())
 
     class TestReceiver(TestCase):
         receiver = Receiver()
@@ -116,8 +162,15 @@ if __name__ == '__main__':
             self.writer.make_kid_description(kid_mock)
             test_tools.close_arquive()
     
+
     class TestJason(TestCase):
-        def store_in_data(self):
-            pass
+        jason = Jason()
+        def test_store_in_data(self):
+            t_l.TerminalLogger.write('testando store_in_data')
+            self.jason.my_receiver.add_kid_to_sector(kid_mock)
+            self.jason.my_receiver.add_kid_to_sector(kid_mock)
+            self.jason.store_in_data()
+            kid_mock['nome'] ='Diego'
+            self.jason.store_in_data()
 
     main()
