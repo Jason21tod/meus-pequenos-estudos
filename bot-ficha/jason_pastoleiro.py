@@ -3,6 +3,7 @@ import json as jsn
 
 from logging import exception
 from time import sleep
+from base_handlers import data_sanatizer as ds
 
 
 class Receiver:
@@ -17,13 +18,17 @@ class Receiver:
             'clube':[]
         }
 
+    def define_data(self, title) -> list:
+        print(f'\n            {title}              \n')
+        return [ds.DataInputSanatizer.filter_num('mês: '), ds.DataInputSanatizer.filter_num('dia: ')]
+
     def receive_a_kid(self) -> dict:
         kid = {
             'nome': input('<<< Insira o nome: '),
-            'idade': input('<<< Insira a idade: '),
-            'check-in':[int(input('mês: ')), int(input('dia: '))],
-            'check-out':[int(input('mês: ')), int(input('dia: '))],
-            'apt':int(input('Insira o apartamento: ')),
+            'idade': ds.DataInputSanatizer.filter_num('<<< Insira a idade: '),
+            'check-in':[ds.DataInputSanatizer.filter_num('mês: '), ds.DataInputSanatizer.filter_num('dia: ')],
+            'check-out':[self.define_data()],
+            'apt': ds.DataInputSanatizer.filter_num('Insira o apartamento: '),
             'responsavel': input('Insira o responsável: ')}
         return kid
 
