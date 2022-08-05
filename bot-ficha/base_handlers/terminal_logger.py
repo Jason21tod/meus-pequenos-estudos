@@ -9,6 +9,7 @@ class TerminalLogger:
     @classmethod
     def write(cls, something: Any):
         print(_NAME, ' -  Avisa >>> ', something)
+        print()
 
 
 if __name__ == '__main__':

@@ -26,7 +26,7 @@ class Receiver:
         kid = {
             'nome': input('<<< Insira o nome: '),
             'idade': ds.DataInputSanatizer.filter_num('<<< Insira a idade: '),
-            'check-in':[ds.DataInputSanatizer.filter_num('mês: '), ds.DataInputSanatizer.filter_num('dia: ')],
+            'check-in':[self.define_data],
             'check-out':[self.define_data()],
             'apt': ds.DataInputSanatizer.filter_num('Insira o apartamento: '),
             'responsavel': input('Insira o responsável: ')}
@@ -77,3 +77,47 @@ class Jason:
         jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=2)
         with open('data/kids_data.json', 'w') as kids_db:
             kids_db.write((f'{jason_objt}'))
+
+
+if __name__ == '__main__':
+    from unittest import TestCase, main
+    from writers import test_tools
+    from base_handlers import terminal_logger as t_l
+
+    kid_mock = {
+    'nome': 'Henrique (mock)',
+    'idade': 10,
+    'check-in':[12, 2],
+    'check-out':[18, 2],
+    'apt': 100,
+    'responsavel': 'Alexandre (Mock)'}
+
+    class TestReceiver(TestCase):
+        receiver = Receiver()
+        def test_define_data(self):
+            t_l.TerminalLogger.write('teste_define_data pulado: teste escrito nos testes de usabilidade')
+
+        def test_receive_a_kid(self):
+            t_l.TerminalLogger.write('teste receive_a_kid pulado: teste escrito nos testes de usabilidade')
+
+        def test_add_kid_to_sector(self):
+            t_l.TerminalLogger.write(f'verificando se {kid_mock["nome"]} será adicionado ao clube...')
+            t_l.TerminalLogger.write(f'Dados: {self.receiver.kids_sector_list}')
+            self.receiver.add_kid_to_sector(kid_mock)
+            self.assertIn(kid_mock, self.receiver.kids_sector_list['clube'])
+            t_l.TerminalLogger.write(f'Dados: {self.receiver.kids_sector_list}')
+
+
+    class TestWriter(TestCase):
+        writer = Writer()
+        def test_make_kid_descriptions(self):
+            t_l.TerminalLogger.write('Escrevendo a descrição das crianças: ')
+            test_tools.prepare_archive()
+            self.writer.make_kid_description(kid_mock)
+            test_tools.close_arquive()
+    
+    class TestJason(TestCase):
+        def store_in_data(self):
+            pass
+
+    main()
