@@ -6,7 +6,6 @@ import pyautogui
 CURRENT_TIME = datetime.now().ctime()
 
 CURRENT_TIME = CURRENT_TIME.split()
-print(CURRENT_TIME[3][0:2])
 
 def do_cumpriment_by_time():
     sleep(1)
@@ -25,7 +24,7 @@ def do_cumpriment_by_time():
 def do_cumpriment_showing_time():
     sleep(1)
     pyautogui.hotkey('ctrl', 'enter')
-    pyautogui.write(f'Agora são {CURRENT_TIME[3]}')
+    pyautogui.write(f'Agora sao {CURRENT_TIME[3]}')
     pyautogui.press('enter')
 
 def do_cumpriment_in_test():
@@ -34,7 +33,7 @@ def do_cumpriment_in_test():
     pyautogui.write('Oi :sorriso')
     pyautogui.press('enter')
     pyautogui.write("""eu sou Jason, o pastoleiro,
-    estou fazendo uns testes com mensagens, espero que n se importem.""")
+    estou espero que n se importem.""")
     pyautogui.press('enter')
 
 
@@ -44,12 +43,15 @@ if __name__ == '__main__':
     class ModuleFunctionTestCase(TestCase):
         def test_cumpriment_msg(self):
             pyautogui.hotkey('ctrl', 'n')
+            print('>>> iniciando teste de cumprimento')
             do_cumpriment_in_test()
 
         def test_do_cumpriment_by_time(self):
+            print('>>> iniciando teste de cumprimento por tempo')
             do_cumpriment_by_time()
 
         def test_do_cumpriment_by_showing_time(self):
+            print('>>> iniciando teste de cumprimento mostrando o horario')
             do_cumpriment_showing_time()
 
     main()
