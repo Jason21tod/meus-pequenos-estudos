@@ -9,16 +9,6 @@ from base_handlers import data_sanatizer as ds
 
 
 @dataclass
-class Sector:
-    name: str
-    kids: list
-    year_limit: list[int, int]
-
-    def make_dict(self):
-        return {self.name: self.kids}
-
-
-@dataclass
 class Kid:
     name: str
     years_old: int
@@ -37,6 +27,22 @@ class Kid:
         'apt': self.apt,
         'responsavel': self.parent,
         'anot': self.anot}
+
+
+@dataclass
+class Sector:
+    name: str
+    kids: list[Kid]
+    year_limit: list[int, int]
+
+    def add_a_kid(self, kid: Kid) -> False:
+        if kid.years_old < self.year_limit[0] or kid.years_old > self.year_limit[1]: return False
+        else:
+            self.kids.append(kid)
+            return True
+
+    def make_dict(self):
+        return {self.name: self.kids}
 
 
 class Receiver:
@@ -59,7 +65,7 @@ class Receiver:
         kid = {
             'nome': input('<<< Insira o nome: '),
             'idade': ds.DataInputSanatizer.filter_num('<<< Insira a idade: '),
-            'check-in':[self.define_data],
+            'check-in':[self.define_data()],
             'check-out':[self.define_data()],
             'apt': ds.DataInputSanatizer.filter_num('Insira o apartamento: '),
             'responsavel': input('Insira o responsável: ')}
@@ -117,13 +123,9 @@ if __name__ == '__main__':
     from writers import test_tools
     from base_handlers import terminal_logger as t_l
 
-    kid_mock = {
-    'nome': 'Henrique (mock)',
-    'idade': 10,
-    'check-in':[12, 2],
-    'check-out':[18, 2],
-    'apt': 100,
-    'responsavel': 'Alexandre (Mock)'}
+
+    kid = Kid('Alexandre', 10, date(2022, 2, 12), date(2022, 2, 18), 100, 'Rodrigo', 'Nenhuma')
+    kid_mock = kid.make_dict()
 
 
     class TestSector(TestCase):
@@ -132,11 +134,14 @@ if __name__ == '__main__':
             t_l.TerminalLogger.write('testando make_dict in test sector')
             print(self.sector.make_dict())
 
+        def test_add_a_kid(self):
+            t_l.TerminalLogger.write('testando receive_a_kid')
+            self.assertEqual(self.sector.add_a_kid(kid), True)
+
     class TestKid(TestCase):
-        kid = Kid('Alexandre', 10, date(2022, 2, 12), date(2022, 2, 18), 100, 'Rodrigo', 'Nenhuma')
         def test_make_dict(self):
             t_l.TerminalLogger.write('testando make dict in test kid')
-            print(self.kid.make_dict())
+            print(kid.make_dict())
 
     class TestReceiver(TestCase):
         receiver = Receiver()
