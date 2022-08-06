@@ -10,7 +10,7 @@ from base_handlers import data_sanatizer as ds
 
 @dataclass
 class Kid:
-    name: str
+    name: str 
     years_old: int
     check_in: date
     checkout: date
@@ -43,6 +43,17 @@ class Sector:
 
     def make_dict(self):
         return {self.name: self.kids}
+
+
+def turn_in_dataclass(kid_dict: dict):
+     return Kid(
+        name= kid_dict['nome'],
+        years_old= kid_dict['idade'],
+        check_in= date(2022, kid_dict['check-in'][1], kid_dict['check-in'][0]),
+        checkout=  date(2022, kid_dict['check-out'][1], kid_dict['check-out'][0]),
+        apt = kid_dict['apt'],
+        parent= kid_dict['responsavel'],
+        anot = kid_dict['anot'])
 
 
 class Receiver:
@@ -147,6 +158,10 @@ if __name__ == '__main__':
         def test_make_dict(self):
             t_l.TerminalLogger.write('testando make dict in test kid')
             print(kid.make_dict())
+
+        def test_turn_in_dataclass(self):
+            t_l.TerminalLogger.write('testando turn_in_dataclass na classe kid')
+            t_l.TerminalLogger.write(turn_in_dataclass(kid_mock))
 
     class TestReceiver(TestCase):
         receiver = Receiver()
