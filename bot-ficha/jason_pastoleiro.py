@@ -117,6 +117,11 @@ class Jason:
         with open('data/kids_data.json', open_form) as kids_db:
             kids_db.write((f'{jason_objt}'))
 
+    def get_from_data(self):
+        with open('data/kids_data.json') as archive:
+            archive = jsn.load(archive)
+        return archive
+
 
 if __name__ == '__main__':
     from unittest import TestCase, main
@@ -170,6 +175,13 @@ if __name__ == '__main__':
 
     class TestJason(TestCase):
         jason = Jason()
+
+        def test_get_from_data(self):
+            t_l.TerminalLogger.write('Testando get_from_data')
+            self.jason.my_receiver.add_kid_to_sector(kid_mock)
+            self.jason.store_in_data()
+            print(self.jason.get_from_data())
+
         def test_store_in_data(self):
             t_l.TerminalLogger.write('testando store_in_data')
             self.jason.my_receiver.add_kid_to_sector(kid_mock)
