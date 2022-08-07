@@ -2,6 +2,19 @@ from datetime import datetime
 from time import sleep
 import test_tools
 import pyautogui
+import logging
+
+
+text_actions_logger = logging.getLogger('logs de texto Log')
+text_actions_logger.setLevel(logging.INFO)
+
+logging.basicConfig(filename='.logs.log', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
+if __name__ == '__main__':
+    text_actions_logger.setLevel(logging.DEBUG)
+    text_actions_logger.debug('Iniciando testes de cumprimentos de textos')
+else:
+    text_actions_logger.info(f'importando {__name__}...')
+
 
 
 CURRENT_TIME = datetime.now().ctime()
@@ -13,13 +26,19 @@ def do_cumpriment_by_time():
     sleep(1)
     hour = int(CURRENT_TIME[3][0:2])
     if hour >= 5 and hour < 12:
-        pyautogui.write('Bom dia povos !')
+        pyautogui.write('Bom dia povos ! ')
+        pyautogui.write(':nasce')
+        pyautogui.press('enter')
         return
     if hour >= 12 and hour < 18:
-        pyautogui.write('Boa tarde gente !')
+        pyautogui.write('Boa tarde gente ! ')
+        pyautogui.write(':sol')
+        pyautogui.press('enter')
         return
     if hour >= 18 and hour < 24:
-        pyautogui.write('Boa noite galerous !')
+        pyautogui.write('Boa noite galerous ! ')
+        pyautogui.write(':noite')
+        pyautogui.press('enter')
         return
     else:
         raise Exception(f'O horário fornecido não funcionou: {hour}')
@@ -30,13 +49,13 @@ def do_cumpriment_showing_time():
     pyautogui.write(f'Agora sao {CURRENT_TIME[3]}')
     pyautogui.press('enter')
 
-def do_cumpriment_in_test():
+def do_cumpriment_in_test(lesson):
     sleep(1)
     pyautogui.hotkey('ctrl', 'enter')
-    pyautogui.write('Oi :sorriso')
+    do_cumpriment_by_time()
     pyautogui.press('enter')
-    pyautogui.write("""eu sou Jason, o pastoleiro,
-    estou espero que n se importem.""")
+    pyautogui.write(f"""eu sou Jason,
+    estou aprendendo {lesson}, espero que n se importem.""", interval=0.1)
     pyautogui.press('enter')
 
 
@@ -47,7 +66,7 @@ if __name__ == '__main__':
         def test_cumpriment_msg(self):
             test_tools.prepare_archive()
             print('>>> iniciando teste de cumprimento')
-            do_cumpriment_in_test()
+            do_cumpriment_in_test('testes')
             test_tools.close_arquive()
 
         def test_do_cumpriment_by_time(self):
@@ -62,6 +81,12 @@ if __name__ == '__main__':
             do_cumpriment_showing_time()
             test_tools.close_arquive()  
 
+        def test_send_all_in_window(self):
+            print('>>> send tto watts')
+            sleep(3)
+            do_cumpriment_showing_time()
+            do_cumpriment_in_test('cumprimentos pelo periodo do dia')
+            pyautogui.hotkey('ctrl', 'enter')
 
 
     main()
