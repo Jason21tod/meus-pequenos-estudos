@@ -3,10 +3,20 @@ from datetime import date
 import pyautogui
 import json as jsn
 
-from logging import exception
+import logging
 from time import sleep
 from base_handlers import data_sanatizer as ds
 
+
+jason_logger = logging.getLogger('Jason Pastoleiro Log')
+jason_logger.setLevel(logging.INFO)
+
+logging.basicConfig(filename='.logs.log', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
+if __name__ == '__main__':
+    jason_logger.setLevel(logging.DEBUG)
+    jason_logger.debug('Iniciando testes no Jason Pastoleiro')
+else:
+    jason_logger.info(f'importando {__name__}...')
 
 @dataclass
 class Kid:
@@ -94,7 +104,7 @@ class Receiver:
                 self.kids_sector_list['clube'].append(kid)
                 return
         except:
-            exception(ValueError('Erro, a criança não foi adicionada em nenhum setor, verifique a idade.'))
+            Exception(ValueError('Erro, a criança não foi adicionada em nenhum setor, verifique a idade.'))
             
 
 class Writer:
