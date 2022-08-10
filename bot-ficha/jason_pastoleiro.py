@@ -80,14 +80,14 @@ class Receiver:
 
     def define_data(self, title) -> list:
         print(f'\n            {title}              \n')
-        return [ds.DataInputSanatizer.filter_num('mês: '), ds.DataInputSanatizer.filter_num('dia: ')]
+        return [ds.DataInputSanatizer.filter_month(), ds.DataInputSanatizer.filter_num('dia: ')]
 
     def receive_a_kid(self) -> dict:
         kid = {
             'nome': input('<<< Insira o nome: '),
             'idade': ds.DataInputSanatizer.filter_num('<<< Insira a idade: '),
-            'check-in':[self.define_data()],
-            'check-out':[self.define_data()],
+            'check-in':[self.define_data('definindo dados do checkin')],
+            'check-out':[self.define_data('definindo dado do checkout')],
             'apt': ds.DataInputSanatizer.filter_num('Insira o apartamento: '),
             'responsavel': input('Insira o responsável: ')}
         return kid
@@ -133,15 +133,23 @@ class Jason:
         self.my_receiver: Receiver = Receiver()
         self.my_writer: Writer = Writer()
 
-    def store_in_data(self, open_form: str = '+w'):
+    def _store_in_data(self, open_form: str = '+w'):
         jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=3)
         with open('data/kids_data.json', open_form) as kids_db:
             kids_db.write((f'{jason_objt}'))
 
-    def get_from_data(self):
+    def _get_from_data(self):
         with open('data/kids_data.json') as archive:
             archive = jsn.load(archive)
+            self.my_receiver.kids_sector_list = archive
         return archive
+
+    def receive_and_add_to_database(self):
+        print('Recebendo crianças')
+        print(self._get_from_data())
+        self.my_receiver.add_kid_to_sector(self.my_receiver.receive_a_kid())
+        jason_logger.log(logging.INFO, 'Adicionando crianca...')
+        self._store_in_data()
 
 
 if __name__ == '__main__':
@@ -164,6 +172,7 @@ if __name__ == '__main__':
             t_l.TerminalLogger.write('testando receive_a_kid')
             self.assertEqual(self.sector.add_a_kid(kid), True)
 
+
     class TestKid(TestCase):
         def test_make_dict(self):
             t_l.TerminalLogger.write('testando make dict in test kid')
@@ -172,6 +181,7 @@ if __name__ == '__main__':
         def test_turn_in_dataclass(self):
             t_l.TerminalLogger.write('testando turn_in_dataclass na classe kid')
             t_l.TerminalLogger.write(turn_in_dataclass(kid_mock))
+
 
     class TestReceiver(TestCase):
         receiver = Receiver()
@@ -203,16 +213,18 @@ if __name__ == '__main__':
 
         def test_get_from_data(self):
             t_l.TerminalLogger.write('Testando get_from_data')
+            print(self.jason.my_receiver.kids_sector_list)
             self.jason.my_receiver.add_kid_to_sector(kid_mock)
-            self.jason.store_in_data()
-            print(self.jason.get_from_data())
+            self.jason._store_in_data()
+            print(self.jason.my_receiver.kids_sector_list)
+            self.jason._get_from_data()
 
         def test_store_in_data(self):
             t_l.TerminalLogger.write('testando store_in_data')
             self.jason.my_receiver.add_kid_to_sector(kid_mock)
             self.jason.my_receiver.add_kid_to_sector(kid_mock)
-            self.jason.store_in_data()
+            self.jason._store_in_data()
             kid_mock['nome'] ='Diego'
-            self.jason.store_in_data()
+            self.jason._store_in_data()
 
     main()
