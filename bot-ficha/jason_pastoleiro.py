@@ -81,16 +81,20 @@ class Receiver:
 
     def define_data(self, title) -> list:
         print(f'\n            {title}              \n')
-        return [ds.DataInputSanatizer.filter_month(), ds.DataInputSanatizer.filter_num('dia: ')]
+        month = ds.DataInputSanatizer.filter_month()
+        day = ds.DataInputSanatizer.filter_num('dia: ')
+        return [day, month]
 
     def receive_a_kid(self) -> dict:
         kid = {
             'nome': input('<<< Insira o nome: '),
             'idade': ds.DataInputSanatizer.filter_num('<<< Insira a idade: '),
-            'check-in':[self.define_data('definindo dados do checkin')],
-            'check-out':[self.define_data('definindo dado do checkout')],
+            'check-in':[],
+            'check-out':[],
             'apt': ds.DataInputSanatizer.filter_num('Insira o apartamento: '),
             'responsavel': input('Insira o responsável: ')}
+        kid['check-in'] = self.make_checkin_data()
+        kid['check-out'] = self.make_checkout_data(kid['check-in'])
         return kid
 
     def add_kid_to_sector(self, kid:dict):
@@ -106,7 +110,24 @@ class Receiver:
                 return
         except:
             Exception(ValueError('Erro, a criança não foi adicionada em nenhum setor, verifique a idade.'))
-            
+
+    def make_checkin_data(self):
+        while True:
+            check_in = self.define_data('Check in') 
+            verify_check_in_coerence = ds.CheckInOutVerifier.verify_checkin_data(check_in[1], check_in[0])
+            verify_month_coerence = ds.CheckInOutVerifier.verify_month_coerence(check_in)
+            if verify_check_in_coerence == False and verify_month_coerence == False:
+                break
+        return check_in
+
+    def make_checkout_data(self, checkin: list = [ds.CURRENT_DAY, ds.CheckInOutVerifier.month_to_number_dict[ds.CURRENT_MONTH]]):
+        while True:
+            checkout = self.define_data('checkout')
+            verify_month_coerence = ds.CheckInOutVerifier.verify_month_coerence(checkout)
+            verify_checkout_coerence = ds.CheckInOutVerifier.verify_checkout(checkin, checkout)
+            if verify_checkout_coerence == False and verify_month_coerence == False:
+                break
+        return checkout
 
 class Writer:
     """Classe que dá os outputs e as respostas a certas operações, ele não avalia nada, apenas mostra os resultados. Ela tem uma
@@ -156,3 +177,4 @@ class Jason:
         print('Deletando ...')
         self._get_from_data()
         print(self.my_receiver.kids_sector_list[sector][-1])
+
