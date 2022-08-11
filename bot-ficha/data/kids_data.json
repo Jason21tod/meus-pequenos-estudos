@@ -1,5 +1,51 @@
 {
    "clubinho": [],
    "kids club": [],
-   "clube": []
+   "clube": [
+      {
+         "nome": "Alexandre",
+         "idade": 10,
+         "check-in": [
+            12,
+            2
+         ],
+         "check-out": [
+            18,
+            2
+         ],
+         "apt": 100,
+         "responsavel": "Rodrigo",
+         "anot": "Nenhuma"
+      },
+      {
+         "nome": "Diego",
+         "idade": 10,
+         "check-in": [
+            12,
+            2
+         ],
+         "check-out": [
+            18,
+            2
+         ],
+         "apt": 100,
+         "responsavel": "Rodrigo",
+         "anot": "Nenhuma"
+      },
+      {
+         "nome": "Diego",
+         "idade": 10,
+         "check-in": [
+            12,
+            2
+         ],
+         "check-out": [
+            18,
+            2
+         ],
+         "apt": 100,
+         "responsavel": "Rodrigo",
+         "anot": "Nenhuma"
+      }
+   ]
 }

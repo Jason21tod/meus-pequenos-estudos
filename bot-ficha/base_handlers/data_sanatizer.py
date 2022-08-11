@@ -42,23 +42,3 @@ class DataInputSanatizer:
     @classmethod
     def filter_date_numbers(self, date: date):
         return [date.year,date.month,date.day]
-
-
-if __name__ == '__main__':
-    import unittest
-
-    class TestDataInputSanatizer(unittest.TestCase):
-        def test_verify_is_number(self):
-            self.assertEqual(DataInputSanatizer.verify_is_number('B'), False)
-            self.assertEqual(DataInputSanatizer.verify_is_number(2), True)
-        
-        def test_filter_date_numbers(self):
-            date_mock = date(2022, 12, 12)
-            print(DataInputSanatizer.filter_date_numbers(date_mock))
-
-        def test_verify_is_in_month_limit(self):
-            self.assertEqual(DataInputSanatizer.verify_is_in_month_limit(1), True)
-            self.assertEqual(DataInputSanatizer.verify_is_in_month_limit(13), False)
-            self.assertEqual(DataInputSanatizer.verify_is_in_month_limit(0), False)
-
-    unittest.main()

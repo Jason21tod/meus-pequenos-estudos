@@ -1,4 +1,5 @@
 from typing import Any
+import unittest
 
 _NAME = 'Jason Pastoleiro'
 
@@ -11,12 +12,3 @@ class TerminalLogger:
         print(_NAME, ' -  Avisa >>> ', something)
         print()
 
-
-if __name__ == '__main__':
-    import unittest
-
-    class TestTermminalLogger(unittest.TestCase):
-        def test_something(self):
-            TerminalLogger.write('Isso aqui é um teste')
-
-    unittest.main()
