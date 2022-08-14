@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from datetime import date
 from time import sleep
 from base_handlers import data_sanatizer as ds
+import writers.text_cumpriments as txt_cump
+from writers.text_warnings import make_generic_warning
 
 
 jason_logger = logging.getLogger('Jason Pastoleiro Log')
@@ -129,6 +131,7 @@ class Receiver:
                 break
         return checkout
 
+
 class Writer:
     """Classe que dá os outputs e as respostas a certas operações, ele não avalia nada, apenas mostra os resultados. Ela tem uma
     certa lógica mas somente usada para fins de controlar as ações do Jason, podendo mandar msgs, construir tabelas, e controlar teclado
@@ -142,8 +145,8 @@ class Writer:
         kid_msg = ((kid['nome']), str(kid['apt']), kid['responsavel'])
         sleep(1)
         for item in kid_msg:
-            pyautogui.write(item, 0.1)
-            pyautogui.write(' ', 0.1)
+            pyautogui.write(item, 0.03)
+            pyautogui.write(' ', 0.03)
         pyautogui.hotkey('ctrl', 'enter')
         
 
@@ -178,3 +181,12 @@ class Jason:
         self._get_from_data()
         print(self.my_receiver.kids_sector_list[sector][-1])
 
+    def make_list_kids(self, sector_string):
+        self._get_from_data()
+        kids = self.my_receiver.kids_sector_list
+        sleep(5)
+        if len(self.my_receiver.kids_sector_list[sector_string]) == 0:
+            make_generic_warning(f' N tem amiguinhos no {sector_string} ! :O')
+        for kid in kids[sector_string]:
+            print(kid)
+            self.my_writer.make_kid_description(kid)

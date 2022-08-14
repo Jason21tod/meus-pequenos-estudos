@@ -1,6 +1,6 @@
 from datetime import datetime
 from time import sleep
-import test_tools
+from writers import test_tools
 import pyautogui
 import logging
 
@@ -46,16 +46,8 @@ def do_cumpriment_by_time():
 def do_cumpriment_showing_time():
     sleep(1)
     pyautogui.hotkey('ctrl', 'enter')
-    pyautogui.write(f'Agora sao {CURRENT_TIME[3]}')
-    pyautogui.press('enter')
-
-def do_cumpriment_in_test(lesson):
+    pyautogui.write(f'Jason Falando >>> Agora sao {CURRENT_TIME[3]}')
     sleep(1)
-    pyautogui.hotkey('ctrl', 'enter')
-    do_cumpriment_by_time()
-    pyautogui.press('enter')
-    pyautogui.write(f"""eu sou Jason,
-    estou aprendendo {lesson}, espero que n se importem.""", interval=0.1)
     pyautogui.press('enter')
 
 
@@ -66,7 +58,6 @@ if __name__ == '__main__':
         def test_cumpriment_msg(self):
             test_tools.prepare_archive()
             print('>>> iniciando teste de cumprimento')
-            do_cumpriment_in_test('testes')
             test_tools.close_arquive()
 
         def test_do_cumpriment_by_time(self):
@@ -85,7 +76,6 @@ if __name__ == '__main__':
             print('>>> send tto watts')
             sleep(3)
             do_cumpriment_showing_time()
-            do_cumpriment_in_test('cumprimentos pelo periodo do dia')
             pyautogui.hotkey('ctrl', 'enter')
 
 

@@ -17,10 +17,10 @@ class TestDataInputSanatizer(unittest.TestCase):
         self.assertEqual(d_t.DataInputSanatizer.verify_is_in_month_limit(0), False)
     
 class TestCheckInOutHandler(unittest.TestCase):
-
     def test_verify_check_in_data(self):
         print('Data atual: ', d_t.CURRENT_MONTH, d_t.CURRENT_DAY)
-        self.assertEqual(d_t.CheckInOutVerifier.verify_checkin_data(d_t.CheckInOutVerifier.month_to_number_dict[d_t.CURRENT_MONTH]-1, d_t.CURRENT_DAY-1), True)
+        self.assertEqual(d_t.CheckInOutVerifier.verify_checkin_data(d_t.CheckInOutVerifier.month_to_number_dict[d_t.CURRENT_MONTH]+1, d_t.CURRENT_DAY-1), True)
+        self.assertEqual(d_t.CheckInOutVerifier.verify_checkin_data(d_t.CheckInOutVerifier.month_to_number_dict[d_t.CURRENT_MONTH], d_t.CURRENT_DAY+1), True)
 
     def test_verify_checkout_data(self):
         self.assertEqual(d_t.CheckInOutVerifier.verify_month_coerence([31, 11]), True)

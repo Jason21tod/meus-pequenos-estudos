@@ -79,6 +79,8 @@ class CheckInOutVerifier:
     @classmethod
     def verify_month_coerence(cls, month_data: list):
         try:
+            if month_data[0] < 1:
+                return True
             if month_data[1] in cls.month_day_thirty_one:
                 if month_data[0] > 31:
                     print('O mes n tem mais que 31 dias gente ')
@@ -98,7 +100,7 @@ class CheckInOutVerifier:
     @classmethod
     def verify_checkout(cls, checkin, checkout):
         if checkin[1] > checkout[1]:
-            print('O mes do checkout deve ser menor q o do checkin :o')
+            print('O mes do checkout deve ser maior q o do checkin :o')
             return True
         if checkout[1] < cls.month_to_number_dict[CURRENT_MONTH]:
             print('Esse hospede ja foi embora ???')
