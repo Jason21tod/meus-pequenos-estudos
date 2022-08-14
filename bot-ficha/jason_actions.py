@@ -19,11 +19,12 @@ def find_whats(group_name:str):
     sleep(0.5)
     pyautogui.click(x=133, y=268)
 
-
 def do_list_of_kids(sector, group_name='Audios'):
     find_whats(group_name)
     sleep(5)
     pyautogui.click(x=608, y=688)
+    pyautogui.write(f'Olha só a pastinha do {sector}')
+    pyautogui.hotkey('ctrl', 'enter')
     jason.make_list_kids(sector)
     text_assests.close_archives()
 

@@ -189,4 +189,5 @@ class Jason:
             make_generic_warning(f' N tem amiguinhos no {sector_string} ! :O')
         for kid in kids[sector_string]:
             print(kid)
+            sleep(2)
             self.my_writer.make_kid_description(kid)
