@@ -2,7 +2,6 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from jason_pastoleiro import Jason
 from jason_actions import do_list_of_kids
-from time import sleep
 
 jason_test = Jason('Jason whats')
 
