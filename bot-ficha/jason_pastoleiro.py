@@ -177,9 +177,11 @@ class Jason:
         self._store_in_data()
 
     def delete_last_addicted(self, sector: str, ):
-        print('Deletando ...')
+        print(f'Deletando ...{self.my_receiver.kids_sector_list[sector][-1]}')
         self._get_from_data()
-        print(self.my_receiver.kids_sector_list[sector][-1])
+        self.my_receiver.kids_sector_list[sector].pop(-1)
+        self._store_in_data()
+        print(self.my_receiver.kids_sector_list[sector])
 
     def make_list_kids(self, sector_string):
         self._get_from_data()

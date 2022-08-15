@@ -1,4 +1,3 @@
-
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from jason_pastoleiro import Jason

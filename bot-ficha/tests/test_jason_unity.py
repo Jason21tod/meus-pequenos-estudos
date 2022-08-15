@@ -6,9 +6,15 @@ from jason_pastoleiro import Jason, Kid, Receiver, Sector, Writer, turn_in_datac
 from writers import test_tools
 from base_handlers import terminal_logger as t_l
 
+def clear_db(db: Jason, sector: str):
+    for qunt in range(len(db.my_receiver.kids_sector_list[sector])):
+        db.delete_last_addicted(sector)
+
 
 kid = Kid('Alexandre', 10, date(2022, 2, 12), date(2022, 2, 18), 100, 'Rodrigo', 'Nenhuma')
+kid_2 = Kid('Fernando', 12, date(2022, 2, 10), date(2022, 3, 1), 134, 'Claudia', 'Alergico a banana')
 kid_mock = kid.make_dict()
+kid_mock_2 = kid_2.make_dict()
 for var in os.environ:
     print(var)
 
@@ -72,10 +78,21 @@ class TestJason(TestCase):
     def test_store_in_data(self):
         t_l.TerminalLogger.write('testando store_in_data')
         self.jason.my_receiver.add_kid_to_sector(kid_mock)
+        self.jason.my_receiver.add_kid_to_sector(kid_mock_2)
+        self.jason._store_in_data()
+        clear_db(self.jason, 'clube')
+        print(self.jason.my_receiver.kids_sector_list)
+    
+    def test_delete_the_last(self):
+        t_l.TerminalLogger.write('testando delete_the_last')
         self.jason.my_receiver.add_kid_to_sector(kid_mock)
+        self.jason.my_receiver.add_kid_to_sector(kid_mock_2)
         self.jason._store_in_data()
-        kid_mock['nome'] ='Diego'
-        self.jason._store_in_data()
+        print(self.jason.my_receiver.kids_sector_list)
+        self.jason.delete_last_addicted('clube')
+        print(self.jason.my_receiver.kids_sector_list)
+        clear_db(self.jason, 'clube')
+
 
 
 if __name__ == '__main__':
