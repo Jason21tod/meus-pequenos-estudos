@@ -27,6 +27,7 @@ def do_list_of_kids(sector, group_name='Audios'):
     pyautogui.hotkey('ctrl', 'enter')
     jason.make_list_kids(sector)
     text_assests.close_archives()
+    return f'A pastinha do {sector} esta saindo !'
 
 
 if __name__ == '__main__':
