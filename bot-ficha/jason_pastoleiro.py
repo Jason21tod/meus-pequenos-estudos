@@ -142,7 +142,7 @@ class Writer:
 
     def make_kid_description(self, kid: dict):
         sleep(1)
-        kid_msg = ((kid['nome']), str(kid['apt']), kid['responsavel'])
+        kid_msg = ((kid['nome']), str(kid['apt']), kid['responsavel'], kid['anot'])
         sleep(1)
         for item in kid_msg:
             pyautogui.write(item, 0.03)

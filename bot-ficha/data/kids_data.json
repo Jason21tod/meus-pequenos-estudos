@@ -1,5 +1,65 @@
 {
-   "clubinho": [],
-   "kids club": [],
-   "clube": []
+   "clubinho": [      {       
+      "nome": "Mogli",
+      "idade": 10,
+      "check-in": [
+         10,
+         6
+      ],
+      "check-out": [
+         27,
+         8
+      ],
+      "apt": 120,
+      "responsavel": "Glade",
+      "anot": " "
+   }],
+   "kids club": [      {       
+      "nome": "Franscisco",
+      "idade": 10,
+      "check-in": [
+         10,
+         6
+      ],
+      "check-out": [
+         27,
+         8
+      ],
+      "apt": 120,
+      "responsavel": "Glade",
+      "anot": " "
+   }],
+   "clube": [
+      {       
+         "nome": "Dave",
+         "idade": 10,
+         "check-in": [
+            10,
+            6
+         ],
+         "check-out": [
+            27,
+            8
+         ],
+         "apt": 120,
+         "responsavel": "Glade",
+         "anot": "Alergico a grama"
+      },
+
+      {
+      "nome": "Henrico",
+      "idade": 10,
+      "check-in": [
+         10,
+         6
+      ],
+      "check-out": [
+         27,
+         8
+      ],
+      "apt": 120,
+      "responsavel": "Fred",
+      "anot": "Alergico a grama"
+   }
+   ]
 }
