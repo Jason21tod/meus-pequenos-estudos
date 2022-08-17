@@ -1,4 +1,3 @@
-import pyautogui
 import json as jsn
 import os
 
@@ -6,8 +5,6 @@ from dataclasses import dataclass
 from datetime import date
 from time import sleep
 from base_handlers import data_sanatizer as ds
-import writers.text_cumpriments as txt_cump
-from writers.text_warnings import make_generic_warning
 
 
 @dataclass
@@ -129,15 +126,6 @@ class Writer:
     def __init__(self, name= 'Writer mock') -> None:
         self.name = name
 
-    def make_kid_description(self, kid: dict):
-        sleep(1)
-        kid_msg = ((kid['nome']), str(kid['apt']), kid['responsavel'], kid['anot'])
-        sleep(1)
-        for item in kid_msg:
-            pyautogui.write(item, 0.03)
-            pyautogui.write(' ', 0.03)
-        pyautogui.hotkey('ctrl', 'enter')
-        
 
 class Jason:
     """Classe que une input, processamento, análise e output, de tudo. Ela funciona com base em composição. As duas classes que compoem essa
@@ -171,13 +159,3 @@ class Jason:
         self._store_in_data()
         print(self.my_receiver.kids_sector_list[sector])
 
-    def make_list_kids(self, sector_string):
-        self._get_from_data()
-        kids = self.my_receiver.kids_sector_list
-        sleep(5)
-        if len(self.my_receiver.kids_sector_list[sector_string]) == 0:
-            make_generic_warning(f' N tem amiguinhos no {sector_string} ! :O')
-        for kid in kids[sector_string]:
-            print(kid)
-            sleep(2)
-            self.my_writer.make_kid_description(kid)

@@ -1,1 +1,0 @@
-MORNING_CUMP = 

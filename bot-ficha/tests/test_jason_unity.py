@@ -3,7 +3,6 @@ import os
 from datetime import date
 from unittest import TestCase, main
 from jason_pastoleiro import Jason, Kid, Receiver, Sector, Writer, turn_in_dataclass
-from writers import test_tools
 from base_handlers import terminal_logger as t_l
 
 def clear_db(db: Jason, sector: str):
@@ -53,15 +52,6 @@ class TestReceiver(TestCase):
         self.receiver.add_kid_to_sector(kid_mock)
         self.assertIn(kid_mock, self.receiver.kids_sector_list['clube'])
         t_l.TerminalLogger.write(f'Dados: {self.receiver.kids_sector_list}')
-
-
-class TestWriter(TestCase):
-    writer = Writer()
-    def test_make_kid_descriptions(self):
-        t_l.TerminalLogger.write('Escrevendo a descrição das crianças: ')
-        test_tools.prepare_archive()
-        self.writer.make_kid_description(kid_mock)
-        test_tools.close_arquive()
 
 
 class TestJason(TestCase):
