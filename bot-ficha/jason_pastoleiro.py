@@ -1,6 +1,5 @@
 import pyautogui
 import json as jsn
-import logging
 import os
 
 from dataclasses import dataclass
@@ -10,16 +9,6 @@ from base_handlers import data_sanatizer as ds
 import writers.text_cumpriments as txt_cump
 from writers.text_warnings import make_generic_warning
 
-
-jason_logger = logging.getLogger('Jason Pastoleiro Log')
-jason_logger.setLevel(logging.INFO)
-
-logging.basicConfig(filename='.logs.log', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
-if __name__ == '__main__':
-    jason_logger.setLevel(logging.DEBUG)
-    jason_logger.debug('Iniciando testes no Jason Pastoleiro')
-else:
-    jason_logger.info(f'importando {__name__}...')
 
 @dataclass
 class Kid:
@@ -173,7 +162,6 @@ class Jason:
         print('Recebendo crianças')
         print(self._get_from_data())
         self.my_receiver.add_kid_to_sector(self.my_receiver.receive_a_kid())
-        jason_logger.log(logging.INFO, 'Adicionando crianca...')
         self._store_in_data()
 
     def delete_last_addicted(self, sector: str, ):

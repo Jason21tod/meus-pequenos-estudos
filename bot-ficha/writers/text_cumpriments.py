@@ -2,19 +2,6 @@ from datetime import datetime
 from time import sleep
 from writers import test_tools
 import pyautogui
-import logging
-
-
-text_actions_logger = logging.getLogger('logs de texto Log')
-text_actions_logger.setLevel(logging.INFO)
-
-logging.basicConfig(filename='.logs.log', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
-if __name__ == '__main__':
-    text_actions_logger.setLevel(logging.DEBUG)
-    text_actions_logger.debug('Iniciando testes de cumprimentos de textos')
-else:
-    text_actions_logger.info(f'importando {__name__}...')
-
 
 
 CURRENT_TIME = datetime.now().ctime()
