@@ -3,7 +3,7 @@ import os
 from datetime import date
 from unittest import TestCase, main
 from jason_pastoleiro import Jason, Kid, Receiver, Sector, Writer, turn_in_dataclass
-from base_handlers import terminal_logger as t_l
+from data_handlers import terminal_logger as t_l
 
 def clear_db(db: Jason, sector: str):
     for qunt in range(len(db.my_receiver.kids_sector_list[sector])):

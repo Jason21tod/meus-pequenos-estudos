@@ -1,4 +1,4 @@
-from base_handlers import terminal_logger as t_l
+from data_handlers import terminal_logger as t_l
 import unittest
 
 

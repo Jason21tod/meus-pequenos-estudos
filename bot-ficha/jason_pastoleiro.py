@@ -4,7 +4,7 @@ import os
 from dataclasses import dataclass
 from datetime import date
 from time import sleep
-from base_handlers import data_sanatizer as ds
+from data_handlers import data_sanatizer as ds
 
 
 @dataclass
