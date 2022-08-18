@@ -1,0 +1,173 @@
+{
+   "clubinho": [
+      {
+         "nome": "Amanda de Paula Bgeginski",
+         "idade": 4,
+         "check-in": [
+            2,
+            0
+         ],
+         "check-out": [
+            2,
+            0
+         ],
+         "apt": "312",
+         "responsavel": "Rafael",
+         "anot": "Pode conter tra\u00c3\u00a7os de raiva"
+      },
+      {
+         "nome": "Jorge",
+         "idade": 4,
+         "check-in": [
+            8,
+            18
+         ],
+         "check-out": [
+            8,
+            26
+         ],
+         "apt": "123",
+         "responsavel": "Gerson",
+         "anot": ""
+      }
+   ],
+   "kids club": [
+      {
+         "nome": "Gancho",
+         "idade": 8,
+         "check-in": [
+            2,
+            0
+         ],
+         "check-out": [
+            2,
+            0
+         ],
+         "apt": "127",
+         "responsavel": "Fabricio",
+         "anot": "Alergico a graveto, manter longe, pode ter tendencias violentas e piromaniacas"
+      }
+   ],
+   "clube": [
+      {
+         "nome": "Lasanha",
+         "idade": 12,
+         "check-in": [
+            2,
+            0
+         ],
+         "check-out": [
+            2,
+            0
+         ],
+         "apt": "331",
+         "responsavel": "Sasuke",
+         "anot": "Alergia a animais cururu\r\n"
+      },
+      {
+         "nome": "Thomas Dias Ferreira ",
+         "idade": 12,
+         "check-in": [
+            2,
+            0
+         ],
+         "check-out": [
+            2,
+            0
+         ],
+         "apt": "211",
+         "responsavel": "Coala",
+         "anot": "Al\u00e9rgico a oxig\u00eanio "
+      },
+      {
+         "nome": "thomas turbano ",
+         "idade": 13,
+         "check-in": [
+            1,
+            1
+         ],
+         "check-out": [
+            0,
+            0
+         ],
+         "apt": "69",
+         "responsavel": "jascinto aqui no rego ",
+         "anot": "latex"
+      },
+      {
+         "nome": "Claudio",
+         "idade": 10,
+         "check-in": [
+            2,
+            0
+         ],
+         "check-out": [
+            2,
+            0
+         ],
+         "apt": "320",
+         "responsavel": "Heitor",
+         "anot": "Glaucio\r\n"
+      },
+      {
+         "nome": "Claudio",
+         "idade": 10,
+         "check-in": [
+            2,
+            0
+         ],
+         "check-out": [
+            2,
+            0
+         ],
+         "apt": "100",
+         "responsavel": "Pedro",
+         "anot": ""
+      },
+      {
+         "nome": "BIBibibibibib",
+         "idade": 10,
+         "check-in": [
+            2022,
+            8
+         ],
+         "check-out": [
+            2022,
+            8
+         ],
+         "apt": "10",
+         "responsavel": "Giulia",
+         "anot": ""
+      },
+      {
+         "nome": "BIBibibibibib",
+         "idade": 10,
+         "check-in": [
+            2022,
+            8
+         ],
+         "check-out": [
+            2022,
+            8
+         ],
+         "apt": "10",
+         "responsavel": "Giulia",
+         "anot": ""
+      },
+      {
+         "nome": "sgdfgdfg",
+         "idade": 12,
+         "check-in": [
+            8,
+            18
+         ],
+         "check-out": [
+            8,
+            18
+         ],
+         "apt": "10",
+         "responsavel": "Bob",
+         "anot": ""
+      }
+   ]
+}

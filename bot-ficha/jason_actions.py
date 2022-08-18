@@ -20,16 +20,15 @@ def concat_kids_list(kids_list: list):
 
 def do_list_for_whats(sector, request):
     jason._get_from_data()
-    # kid = jason.my_receiver.kids_sector_list[sector][0]
     kids_list = []
     message = client.messages.create(
                         from_='whatsapp:+14155238886',
-                        body=f'Segue ai a pastinha do {sector}',
+                        body=f'*Segue ai a pastinha do {sector}*',
                         to=request.values.get('From')
                     )
     if len(jason.my_receiver.kids_sector_list[sector]) > 0:
         for kid in jason.my_receiver.kids_sector_list[sector]:
-            kids_list.append(f"{kid['nome']} {kid['apt']} {kid['responsavel']} {kid['anot']}\n")
+            kids_list.append(f"{kid['nome']} {kid['apt']} {kid['responsavel']} - {kid['anot']}\n")
         kids_list = concat_kids_list(kids_list)
         message = client.messages.create(
                               from_='whatsapp:+14155238886',
@@ -44,11 +43,3 @@ def do_list_for_whats(sector, request):
                         to=request.values.get('From')
                     )
 
-
-
-if __name__ == '__main__':
-    class TestFuctions(TestCase):
-        def test_list_of_kids(self):
-            pass
-
-    main()

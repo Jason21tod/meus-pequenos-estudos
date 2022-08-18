@@ -8,6 +8,7 @@ jason_test = Jason('Jason whats')
 
 app = Flask(__name__)
 
+
 def get_msg(msg:str, request):
     msg = msg.lower()
     if 'pastinha clubinho' in msg:
@@ -21,27 +22,47 @@ def get_msg(msg:str, request):
         return do_list_for_whats('kids club', request)
     return request.values.get('ProfileName')
 
-
 @app.route('/bot', methods=['POST', 'GET'])
 def send_msg():
-    print(request.values.get)
     body = request.values.get('Body')
     resp = MessagingResponse()
-    msg = resp.message()
-    msg.body("""oi ser humano\n Segue ai a lista dos comandos que eu sei !
-    \nAtualmente eu sei fazer a pastinha só, mas logo logo, meu pai vai me dar novas habilidades :P.
-    \n.Para requisitar a pastinha, basta digitar: pastinha "nome do setor" e eu verifico se tem crianças ! """)
-    resposta = get_msg(body, request)
-    msg.body(resposta)
-    # msg.body(concat_kids_list(resposta))
-    print(msg.body)
+    msg = resp.message()    
+    if body in ['Oi', 'oi', 'oooi', 'pastinha']:
+        print('>>oi encontrado')
+        msg.body("""oi ser humano\n Segue ai a lista dos comandos que eu sei !
+        \nAtualmente eu sei fazer a pastinha só, mas logo logo, meu pai vai me dar novas habilidades :P.
+        \n.Para requisitar a pastinha, basta digitar: pastinha "nome do setor" e eu verifico se tem crianças ! """)
+    else: get_msg(body, request)
+    msg.body('\nOi ser humano, em que posso ser util ?')
     
     return str(resp)
 
-@app.route('/', methods=['POST', 'GET'])
-def index():
-    formu = request.form
-    print(formu)
+def post_it_in_db(request):
+    check_in = request['check-in']
+    check_out = request['check-out']
+    jason_test._get_from_data(directory='kids_data_test.json')
+    print('Jason pegando dos dados: ',jason_test.my_receiver.kids_sector_list)
+    kid = { 'nome': request['name'],
+            'idade': int(request['years']),
+            'check-in':[int(check_in.split('-')[1]), int(check_in.split('-')[2])],
+            'check-out':[int(check_out.split('-')[1]), int(check_out.split('-')[2])],
+            'apt': request['apt'],
+            'responsavel': request['parents'],
+            'anot': request['anotation']}
+    print(kid)
+    jason_test.my_receiver.add_kid_to_sector(kid)
+    jason_test._store_in_data(directory='kids_data_test.json')
+
+@app.route('/formu', methods=['POST', 'GET'])
+def add_kid():
+    if request.method == 'POST':
+        formu = request.form
+        print(formu)
+        post_it_in_db(formu)
     return render_template('index.html')
 
-app.run(debug= True)
+@app.route('/')
+def index():
+    return '<p>Inicio</p>'
+
+app.run()

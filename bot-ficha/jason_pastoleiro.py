@@ -86,6 +86,7 @@ class Receiver:
         return kid
 
     def add_kid_to_sector(self, kid:dict):
+        print('Recebendo criança: ', kid)
         try:
             if kid['idade'] <= 5 and kid['idade'] > 2:
                 self.kids_sector_list['clubinho'].append(kid)
@@ -135,16 +136,15 @@ class Jason:
         self.my_receiver: Receiver = Receiver()
         self.my_writer: Writer = Writer()
 
-    def _store_in_data(self, open_form: str = '+w'):
+    def _store_in_data(self, open_form: str = 'w', directory:str= 'kids_data_test.json'):
         jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=3)
-        with open('data/kids_data.json', open_form) as kids_db:
+        with open(f'data/{directory}', open_form) as kids_db:
             kids_db.write((f'{jason_objt}'))
 
-    def _get_from_data(self):
-        with open('data/kids_data.json') as archive:
+    def _get_from_data(self, directory: str='kids_data_test.json'):
+        with open(f'data/{directory}') as archive:
             archive = jsn.load(archive)
             self.my_receiver.kids_sector_list = archive
-        return archive
 
     def receive_and_add_to_database(self):
         print('Recebendo crianças')

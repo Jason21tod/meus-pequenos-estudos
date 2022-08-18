@@ -47,6 +47,9 @@ class DataInputSanatizer:
     def filter_date_numbers(self, date: date):
         return [date.year,date.month,date.day]
 
+    @classmethod
+    def receive_date_from_request(self, date):
+        pass
 
 class CheckInOutVerifier:
     number_to_month_dict = {
