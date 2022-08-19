@@ -3,7 +3,6 @@ import os
 
 from dataclasses import dataclass
 from datetime import date
-from time import sleep
 from data_handlers import data_sanatizer as ds
 
 
@@ -117,15 +116,6 @@ class Receiver:
             if verify_checkout_coerence == False and verify_month_coerence == False:
                 break
         return checkout
-
-
-class Writer:
-    """Classe que dá os outputs e as respostas a certas operações, ele não avalia nada, apenas mostra os resultados. Ela tem uma
-    certa lógica mas somente usada para fins de controlar as ações do Jason, podendo mandar msgs, construir tabelas, e controlar teclado
-    mouse.
-    """
-    def __init__(self, name= 'Writer mock') -> None:
-        self.name = name
 
 
 class Jason:
