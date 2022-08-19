@@ -53,16 +53,16 @@ def post_it_in_db(request):
     jason_test.my_receiver.add_kid_to_sector(kid)
     jason_test._store_in_data(directory='kids_data_test.json')
 
-@app.route('/formu', methods=['POST', 'GET'])
+@app.route('/kid_form.html', methods=['POST', 'GET'])
 def add_kid():
     if request.method == 'POST':
         formu = request.form
         print(formu)
         post_it_in_db(formu)
-    return render_template('index.html')
+    return render_template('kid_form.html')
 
 @app.route('/')
 def index():
-    return '<p>Inicio</p>'
+    return render_template('index.html')
 
 app.run()
