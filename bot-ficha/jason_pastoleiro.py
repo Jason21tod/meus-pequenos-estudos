@@ -124,7 +124,6 @@ class Jason:
     def __init__(self, name: str = 'Jason Mock'):
         self.name = name
         self.my_receiver: Receiver = Receiver()
-        self.my_writer: Writer = Writer()
 
     def _store_in_data(self, open_form: str = 'w', directory:str= 'kids_data_test.json'):
         jason_objt = jsn.dumps(self.my_receiver.kids_sector_list, indent=3)
