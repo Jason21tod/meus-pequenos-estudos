@@ -2,7 +2,7 @@ import os
 
 from datetime import date
 from unittest import TestCase, main
-from jason_pastoleiro import Jason, Kid, Receiver, Sector, Writer, turn_in_dataclass
+from jason_pastoleiro import Jason, Kid, Receiver, Sector, turn_in_dataclass
 
 def clear_db(db: Jason, sector: str):
     for qunt in range(len(db.my_receiver.kids_sector_list[sector])):
