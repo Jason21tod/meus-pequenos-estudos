@@ -2,9 +2,19 @@ import json as jsn
 import os
 
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
+from time import localtime
 from data_handlers import data_sanatizer as ds
+from data_handlers.data_sanatizer import CheckInOutVerifier
 
+CURRENT_HOUR = localtime()
+CURRENT_MONTH = datetime.now().ctime().split()[1]
+CURRENT_MONTH = CheckInOutVerifier.month_to_number_dict[CURRENT_MONTH]
+CURRENT_DAY =int( datetime.now().ctime().split()[2])
+
+CURRENT_MONTH_DAY_LIST = [CURRENT_DAY, CURRENT_MONTH]
+print(f'Dia e Mes: {CURRENT_MONTH_DAY_LIST}')
+print(f'Hora: {CURRENT_HOUR.tm_hour}horas ')
 
 @dataclass
 class Kid:
@@ -148,3 +158,12 @@ class Jason:
         self._store_in_data()
         print(self.my_receiver.kids_sector_list[sector])
 
+    def delete_by_checkout_day(self, sector: str, check_out_hour: int = 15):
+        self._get_from_data()
+        print(sector)
+        sector_list = self.my_receiver.kids_sector_list[sector]
+        for kid in sector_list:
+             if kid['check-out'] == CURRENT_MONTH_DAY_LIST and check_out_hour == CURRENT_HOUR:
+                sector_list.remove(kid)
+                self._store_in_data()
+        
