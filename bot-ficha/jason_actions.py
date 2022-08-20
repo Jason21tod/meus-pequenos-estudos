@@ -1,6 +1,4 @@
-from unittest import TestCase, main
 from twilio.rest import Client
-from time import sleep
 import os
 
 import jason_pastoleiro

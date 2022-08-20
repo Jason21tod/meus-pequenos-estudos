@@ -14,7 +14,7 @@ CURRENT_DAY =int( datetime.now().ctime().split()[2])
 
 CURRENT_MONTH_DAY_LIST = [CURRENT_DAY, CURRENT_MONTH]
 print(f'Dia e Mes: {CURRENT_MONTH_DAY_LIST}')
-print(f'Hora: {CURRENT_HOUR.tm_hour}horas ')
+print(f'Hora: {CURRENT_HOUR.tm_hour} horas ')
 
 @dataclass
 class Kid:
